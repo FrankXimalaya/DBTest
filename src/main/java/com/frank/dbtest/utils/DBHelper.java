@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.frank.dbtest.config.SystemConfig;
 
 public class DBHelper {
@@ -101,7 +102,8 @@ public class DBHelper {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
-			conn = getInstance();
+//			conn = getInstance();
+			conn = DruidUtils.getConnection();
 			conn.setAutoCommit(false);
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			for (String item : insertSqlArray) {
